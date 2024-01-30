@@ -75,6 +75,8 @@ score = 0
 
 clock = pygame.time.Clock()
 
+start = time.time()
+
 running = True
 
 value = 512
@@ -85,7 +87,7 @@ def map_potentiometer_to_screen(value, screen_width):
 
 
 while running:
-    clock.tick(60)
+    clock.tick(100)
 
     data = ser.readline().decode("utf-8").strip()
     array = data.split()
@@ -107,13 +109,16 @@ while running:
         if shoot_frequency >= 15:
             shoot_frequency = 0
 
-    if enemy_frequency % 50 == 0:
-        enemy1_pos = [random.randint(0, SCREEN_WIDTH - enemy1_rect.width), 0]
-        enemy1 = Enemy(enemy1_img, enemy1_down_imgs, enemy1_pos)
-        enemies1.add(enemy1)
-    enemy_frequency += 1
-    if enemy_frequency >= 100:
-        enemy_frequency = 0
+    cur = time.time()
+
+    if cur - start > 5:
+        if enemy_frequency % 500 == 0:
+            enemy1_pos = [random.randint(0, SCREEN_WIDTH - enemy1_rect.width), 0]
+            enemy1 = Enemy(enemy1_img, enemy1_down_imgs, enemy1_pos)
+            enemies1.add(enemy1)
+        enemy_frequency += 1
+        if enemy_frequency >= 200:
+            enemy_frequency = 0
 
     for bullet in player.bullets:
         bullet.move()

@@ -10,13 +10,14 @@ void setup(){
   pinMode(buzzerPin, OUTPUT);
   pinMode(buttonPin, INPUT);
   pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
 }
 
 void loop(){
   value = analogRead(potentiometerPIN);
   tone(buzzerPin, value, 500);
   buttonState = digitalRead(buttonPin);
-  if (buttonState == HIGH) {
+  if (value > 512) {
     digitalWrite(ledPin, HIGH);
   } else {
     digitalWrite(ledPin, LOW);
@@ -24,5 +25,5 @@ void loop(){
   Serial.print(value);
   Serial.print(" ");
   Serial.print(buttonState);
-  delay(100);
+  delay(10);
 }
