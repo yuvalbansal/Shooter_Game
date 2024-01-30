@@ -8,7 +8,7 @@ from pygame.locals import *
 from gameRole import *
 import random
 
-serial_port = "/dev/ttyUSB0"
+serial_port = "/dev/ttyACM0"
 baud_rate = 9600
 ser = serial.Serial(serial_port, baud_rate)
 
