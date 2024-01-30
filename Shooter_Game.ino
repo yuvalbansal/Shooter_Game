@@ -10,7 +10,6 @@ void setup(){
   pinMode(buzzerPin, OUTPUT);
   pinMode(buttonPin, INPUT);
   pinMode(ledPin, OUTPUT);
-  Serial.begin(9600);
 }
 
 void loop(){
@@ -24,6 +23,6 @@ void loop(){
   }
   Serial.print(value);
   Serial.print(" ");
-  Serial.println(buttonState);
-//   delay(100);
+  Serial.print(buttonState);
+  delay(100);
 }
