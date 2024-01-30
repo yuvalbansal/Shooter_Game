@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
 import pygame
-import serial
+import  serial
 import time
 from sys import exit
 from pygame.locals import *
 from gameRole import *
 import random
 
-serial_port = "/dev/ttyACM0"
+serial_port = "COM3"
 baud_rate = 9600
 ser = serial.Serial(serial_port, baud_rate)
 
@@ -16,9 +16,9 @@ try:
     while True:
         # Read data from the serial port
         data = ser.readline().decode("utf-8").strip()
-
+        array = data.split()
         # Print the received data
-        print(data)
+        print("Data =", array[0])
 
         # Optional: Process the data further if needed
 
